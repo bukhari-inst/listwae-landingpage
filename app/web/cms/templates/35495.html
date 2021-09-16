@@ -1,0 +1,25 @@
+<>
+  <effect
+    meta={{
+      counter: 0,
+      action: {},
+    }}
+    run={async () => {
+      meta.action = {
+        addCounter: () => {
+          meta.counter++;
+        },
+      };
+    }}
+  />
+  <>
+    <div class={`text-lg font-bold text-blue-600`}>Page Home</div>
+    <div class={`text-lg font-bold`}>Counter {meta.counter}</div>
+    <primary
+      class={`flex flex-col items-start justify-start`}
+      onClick={meta.action.addCounter}
+    >
+      add counter
+    </primary>
+  </>
+</>
