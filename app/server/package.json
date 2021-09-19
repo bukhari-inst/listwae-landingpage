@@ -11,6 +11,5 @@
     "midtrans-client": "^1.2.4",
     "mime": "^2.5.2"
   },
-  "types": "./src/index.ts",
-  "main": "./build/index.js"
+  "types": "./src/index.ts"
 }
