@@ -9,5 +9,6 @@
   "types": "./src/index.ts",
   "devDependencies": {
     "prisma": "^2.30.3"
-  }
+  },
+  "main": "./build/index.js"
 }
