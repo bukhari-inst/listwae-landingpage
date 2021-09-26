@@ -1,0 +1,129 @@
+<>
+  <effect
+    meta={{
+      state: { username: "test" },
+      handleSubmit(event) {
+        console.log("A name was submitted: " + this.state.username);
+        // console.log(event);
+        const createData = db.countries.create({
+          data: {
+            name: this.state.username,
+          },
+        });
+        console.log(createData);
+        event.preventDefault();
+      },
+      ubahNilai(e) {
+        let name = e.target.name;
+        let nilai = e.target.value;
+        this.state[name] = nilai;
+        console.log(name);
+      },
+      deleteData(e) {
+        let nilai = parseInt(e.target.value);
+        const deleteData = db.countries.delete({
+          where: {
+            id: nilai,
+          },
+        });
+        console.log("hapus data id =>" + nilai);
+      },
+      editData(e) {
+        let nilai = parseInt(e.target.value);
+        const updateData = db.countries.update({
+          where: {
+            id: nilai,
+          },
+          data: {
+            name: this.state.username,
+          },
+        });
+        console.log("edit data id =>" + nilai);
+      },
+    }}
+    run={async () => {
+      let data;
+      const userData = db.countries.findMany();
+      userData.then((e) => {
+        meta.allData = e;
+      });
+    }}
+  />
+
+  <div class="w-full max-w-xs">
+    <form
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      onSubmit={meta.handleSubmit}
+    >
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="username"
+        >
+          Name
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Name"
+          onChange={meta.ubahNilai}
+        />
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+  <table class="table-auto">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {meta.allData.map((i) => {
+        return (
+          <tr>
+            <td>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="username"
+                type="text"
+                name="username"
+                placeholder={i["name"]}
+                onChange={meta.ubahNilai}
+              />
+            </td>
+            <td>
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                value={i["id"]}
+                onClick={meta.editData}
+              >
+                Edit
+              </button>
+            </td>
+            <td>
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                value={i["id"]}
+                onClick={meta.deleteData}
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</>

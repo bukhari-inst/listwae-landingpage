@@ -45,5 +45,8 @@
     "tslib": "1.14.1",
     "typescript": "^4.2.3",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "prisma-dbml-generator": "^0.8.0"
   }
 }

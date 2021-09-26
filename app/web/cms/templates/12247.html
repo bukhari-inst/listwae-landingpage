@@ -1,0 +1,23 @@
+<>
+  <effect meta={{}} run={() => {}} />
+  <admin
+    content={{
+      artist: {
+        table: "artists",
+        list: {
+          params: {
+            include: {
+              countries: true,
+            },
+          },
+          table: {
+            columns: [
+              ["Name", { title: "Nama Artist" }],
+              ["countries.name", { title: "Negara" }],
+            ],
+          },
+        },
+      },
+    }}
+  />
+</>

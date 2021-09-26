@@ -1,0 +1,19 @@
+<div>
+  <effect
+    meta={{
+      count: 0,
+    }}
+    run={() => {}}
+  />
+  {getTime()}
+  <div>Ini Page Baru {meta.count}</div>
+  <btn-primary
+    onClick={() => {
+      runInAction(() => {
+        meta.count++;
+      });
+    }}
+  >
+    Click
+  </btn-primary>
+</div>

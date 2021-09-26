@@ -1,0 +1,38 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table albums {
+  AlbumId Int [pk, increment]
+  Title String [not null]
+  ArtistId Int [not null]
+  artists artists [not null]
+  songs songs [not null]
+}
+
+Table artists {
+  ArtistId Int [pk, increment]
+  Name String [not null]
+  CoutriesId Int
+  countries countries
+  albums albums [not null]
+}
+
+Table countries {
+  id Int [pk, increment]
+  name String [not null]
+  artists artists [not null]
+}
+
+Table songs {
+  id Int [pk, increment]
+  song String [not null]
+  albumsId Int [not null]
+  albums albums [not null]
+}
+
+Ref: albums.ArtistId > artists.ArtistId [delete: Cascade]
+
+Ref: artists.CoutriesId > countries.id [delete: SetNull]
+
+Ref: songs.albumsId > albums.AlbumId [delete: Cascade]
